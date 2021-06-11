@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:22:47 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/10 13:37:55 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/11 13:35:30 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,33 @@ int	validate_args(int ac, char **av, int *fd)
 	return (TRUE);
 }
 
+static void	init_map(t_map *map)
+{
+	map->content = NULL;
+	map->lines = 0;
+	map->longest = 0;
+	map->parsed = FALSE;
+}
+
+void	init_player(t_player *player)
+{
+	player->x = -1;
+	player->y = -1;
+}
+
 int	main(int ac, char **av)
 {
 	int		fd;
 	t_view	view;
+	t_player	player;
+	t_map		map;
 
 	validate_args(ac, av, &fd);
 	view.mlx = mlx_init();
-	init_window(view);
+	view.move_count = 0;
+	init_player(&player);
+	view.player = &player;
+	init_map(&map);
+	if (parse_config(fd, &map, &view))
+		init_window(view);
 }

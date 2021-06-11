@@ -6,15 +6,19 @@
 #    By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 16:40:32 by lbertran          #+#    #+#              #
-#    Updated: 2021/06/10 13:39:40 by lbertran         ###   ########lyon.fr    #
+#    Updated: 2021/06/11 13:14:04 by lbertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		= so_long.c \
 			window.c \
 			hooks/action_hooks.c \
+			parsing/map_parser.c \
+			parsing/map_validation.c \
+			parsing/parser.c \
 			render/render.c \
-			utils/error.c
+			utils/error.c \
+			utils/is_valid.c
 SRCS 	= $(addprefix srcs/, ${SRC})
 OBJS	= ${SRCS:.c=.o}
 INCS	= includes
