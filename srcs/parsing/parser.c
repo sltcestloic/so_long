@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:05:30 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:28:50 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:45:20 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ int	parse_config(int fd, t_map *map, t_view *view)
 		view->height = map->lines * 50;
 	else
 		view->height = 1400;
-	if (map->longest <= 28)
+	if (map->longest <= 40)
 		view->width = map->longest * 50;
 	else
-		view->width = 1400;
+		view->width = 2000;
 	view->square_height = view->height / map->lines;
 	view->square_width = view->width / map->longest;
 	parse_textures(view);
