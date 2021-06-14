@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:38:36 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 13:58:32 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 09:38:38 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,33 @@ int	handle_close_button(void)
 	return (0);
 }
 
+void	handle_movement(t_view *view, int x, int y)
+{
+	char	c;
+
+	c = view->map->content[y][x];
+	if (c == '1')
+		return ;
+	view->move_count++;
+	view->player->x = x;
+	view->player->y = y;
+	if (c == 'E' && count_collectibles(view->map) == 0)
+		exit(0);
+	else if (c == 'C')
+		view->map->content[y][x] = '0';
+}
+
 int	handle_key_press(int keycode, t_view *view)
 {
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 13)
-		view->player->y -= 1;
+		handle_movement(view, view->player->x, view->player->y - 1);
 	else if (keycode == 0)
-		view->player->x -= 1;
+		handle_movement(view, view->player->x - 1, view->player->y);
 	else if (keycode == 1)
-		view->player->y += 1;
+		handle_movement(view, view->player->x, view->player->y + 1);
 	else if (keycode == 2)
-		view->player->x += 1;
-	return (0);
-}
-
-int	handle_key_release(int keycode, t_view *view)
-{
-	if (keycode == 13)
-		view->keyboard->w_pressed = FALSE;
-	else if (keycode == 0)
-		view->keyboard->a_pressed = FALSE;
-	else if (keycode == 1)
-		view->keyboard->s_pressed = FALSE;
-	else if (keycode == 2)
-		view->keyboard->d_pressed = FALSE;
+		handle_movement(view, view->player->x + 1, view->player->y);
 	return (0);
 }

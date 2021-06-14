@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:22:47 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 13:35:30 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:27:53 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	init_player(t_player *player)
 
 int	main(int ac, char **av)
 {
-	int		fd;
-	t_view	view;
+	int			fd;
+	t_view		view;
 	t_player	player;
 	t_map		map;
 

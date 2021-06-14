@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:05:30 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 13:18:40 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:28:50 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,21 @@ int	read_config(int fd, t_view *view)
 int	parse_config(int fd, t_map *map, t_view *view)
 {
 	view->map = map;
-	//parse_static_textures(view);
 	if (read_config(fd, view) == ERROR)
 		return (ERROR);
-	//view->animation = 0;
+	view->animation = 0;
 	validate_map(map, view->player);
 	close(fd);
+	if (map->lines <= 28)
+		view->height = map->lines * 50;
+	else
+		view->height = 1400;
+	if (map->longest <= 28)
+		view->width = map->longest * 50;
+	else
+		view->width = 1400;
+	view->square_height = view->height / map->lines;
+	view->square_width = view->width / map->longest;
+	parse_textures(view);
 	return (SUCCESS);
 }

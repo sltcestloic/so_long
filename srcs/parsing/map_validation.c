@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:10:04 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 14:00:19 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:35:49 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	check_player(int x, int y, t_player *player)
 {
 	if (player->x == -1)
 	{
-		player->x = x + 0.5;
-		player->y = y + 0.5;
+		player->x = x;
+		player->y = y;
 	}
 	else
 		print_error_exit("More than one player in map.", 1);
@@ -54,10 +54,12 @@ int	validate_map_line(char *line, t_view *view)
 		i++;
 	if (!line[i] || line[i] != '1')
 		return (FALSE);
-	while (is_valid_map_char(line[i]) || line[i] == ' ')
+	while (line[i])
 	{
 		if (line[i] == 'P')
 			check_player(i, view->map->lines, view->player);
+		if (!is_valid_map_char(line[i]))
+			print_error_exit("Invalid character in map.", 1);
 		i++;
 	}
 	if (line[i - 1] != '1')
@@ -77,5 +79,7 @@ int	validate_map(t_map *map, t_player *player)
 		print_error_exit("No player in map.", 1);
 	map->content_copy[(int)player->y][(int)player->x] = '0';
 	run_map_validation(map, (int)player->x, (int)player->y);
+	if (count_collectibles(map) == 0)
+		return (FALSE);
 	return (TRUE);
 }

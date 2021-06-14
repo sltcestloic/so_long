@@ -6,64 +6,89 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:33:51 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 13:57:10 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:33:35 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_pixel(t_view *view, int x, int y, int color)
+void	draw_texture(t_view *view, int x, int y, t_texture texture)
 {
-	char	*dst;
+	int		tx;
+	int		ty;
+	float	ratio_y;
+	float	ratio_x;
 
-	if (x > WIDTH - 1 || x < 0 || y >= HEIGHT - 1 || y < 0)
-		return ;
-	dst = view->image->addr + (y * view->image->line_len + x
-			* (view->image->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	rgbint(int r, int g, int b)
-{
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (-1);
-	return (65536 * r + 256 * g + b);
-}
-
-int	draw_square(t_view *view, int x, int y, int color)
-{
-	int	rx = WIDTH / view->map->longest;
-	int	ry = HEIGHT / view->map->lines;
-	int	cx = rx * x;
-	int cy = ry * y;
-	while (cy < ry * (y + 1))
+	tx = 0;
+	ty = 0;
+	ratio_x = (float)texture.width / (float)view->square_width;
+	ratio_y = (float)texture.height / (float)view->square_height;
+	while (tx < view->square_width)
 	{
-		while (cx < rx * (x + 1))
+		while (ty < view->square_height)
 		{
-			put_pixel(view, cx, cy, color);
-			//mlx_pixel_put(view->mlx, view->window, cx, cy, color);
-			cx++;
+			put_pixel(view, x + tx, y + ty, texture.addr[(int)
+				((int)(ty * ratio_y) *texture.width + (int)(tx * ratio_x))]);
+			ty++;
 		}
-		cx = rx * x;
-		cy++;
+		ty = 0;
+		tx++;
 	}
-	return 1;
+}
+
+void	draw_square(t_view *view, int x, int y, char c)
+{
+	int	square_x;
+	int	square_y;
+
+	square_x = view->square_width;
+	square_y = view->square_height;
+	draw_texture(view, x * square_x, y * square_y,
+		view->water_texture[view->animation / 10]);
+	if (c == '1')
+		draw_texture(view, x * square_x, y * square_y, view->wall_texture);
+	else if (c == 'C')
+		draw_texture(view, x * square_x, y * square_y,
+			view->fish_texture[view->animation / 10]);
+	else if (c == 'E')
+		draw_texture(view, x * square_x, y * square_y, view->exit_texture);
+}
+
+void	draw_map(t_view *view)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < view->map->lines)
+	{
+		while (j < view->map->longest)
+		{
+			draw_square(view, j, i, view->map->content[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }
 
 int	render_frame(t_view *view)
 {
-	int color;
-	for (int i = 0; i < view->map->lines; i++)
-	{
-		for (int j = 0; view->map->content[i][j]; j++)
-		{
-			if (view->map->content[i][j] == '1')
-				color = rgbint(0, 0, 0);
-			else color = rgbint(255, 255, 255);
-			draw_square(view, j, i, color);
-		}
-	}
-	draw_square(view, view->player->x, view->player->y, rgbint(255, 0, 0));
+	char	*moves;
+	char	*tmp;
+
+	tmp = ft_itoa(view->move_count);
+	moves = ft_strjoin("Moves: ", tmp);
+	if (++view->animation > 49)
+		view->animation = 0;
+	free(tmp);
+	draw_map(view);
+	draw_texture(view, view->player->x * view->square_width,
+		view->player->y * view->square_height, view->player_texture);
 	mlx_put_image_to_window(view->mlx, view->window, view->image->img, 0, 0);
+	mlx_string_put(view->mlx, view->window, 5, 15,
+		rgbint(255, 255, 255), moves);
+	free(moves);
 	return (0);
 }

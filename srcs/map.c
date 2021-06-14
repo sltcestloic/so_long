@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid.c                                         :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 13:14:19 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:32:02 by lbertran         ###   ########lyon.fr   */
+/*   Created: 2021/06/14 09:25:49 by lbertran          #+#    #+#             */
+/*   Updated: 2021/06/14 12:27:45 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_valid_map_char(char c)
+int	count_collectibles(t_map *map)
 {
-	return (c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P');
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	j = 0;
+	count = 0;
+	while (i < map->lines)
+	{
+		while (j < map->longest)
+		{
+			if (map->content[i][j] == 'C')
+				count++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (count);
 }

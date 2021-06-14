@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:09:51 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/11 14:00:25 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 11:24:41 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	copy_content(char **old, char **next, int mlc)
 		next[i] = malloc(sizeof(char) * (mlc + 1));
 		if (!next[i])
 			print_error_exit("Error while allocating map copy.", 1);
+		ft_bzero(next[i], mlc + 1);
 		ft_strlcpy(next[i], old[i], ft_strlen(old[i]) + 1);
 		i++;
 	}
