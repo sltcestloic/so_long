@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:21:40 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:42:30 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 15:31:36 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ typedef struct s_texture
 	int				endian;
 }					t_texture;
 
+typedef struct s_enemy
+{
+	int				x;
+	int				y;
+	int				movx;
+	int				movy;
+}					t_enemy;
+
 typedef struct s_view
 {
 	void			*mlx;
@@ -73,9 +81,12 @@ typedef struct s_view
 	t_image			*image;
 	t_texture		wall_texture;
 	t_texture		water_texture[5];
-	t_texture		player_texture;
+	t_texture		player_texture[5];
 	t_texture		fish_texture[5];
-	t_texture		exit_texture;
+	t_texture		enemy_texture[5];
+	t_texture		exit_texture[5];
+	t_enemy			enemy[50];
+	int				enemy_count;
 }					t_view;
 
 /*
@@ -96,6 +107,8 @@ void				init_window(t_view view);
 */
 
 int					render_frame(t_view *view);
+void				draw_texture(t_view *view, int x, int y, t_texture texture);
+void				draw_enemies(t_view *view);
 
 /*
 ** Hooks handlers
@@ -141,5 +154,18 @@ void				parse_textures(t_view *view);
 void				put_pixel(t_view *view, int x, int y, int color);
 int					rgbint(int r, int g, int b);
 int					get_color(char c);
+
+/*
+** Enemies
+*/
+
+void				move_enemies(t_view *view);
+void				check_enemies(t_view *view);
+
+/*
+** ?
+*/
+
+void				check_finished(t_view *view);
 
 #endif

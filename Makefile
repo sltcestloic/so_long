@@ -6,11 +6,12 @@
 #    By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 16:40:32 by lbertran          #+#    #+#              #
-#    Updated: 2021/06/14 09:51:56 by lbertran         ###   ########lyon.fr    #
+#    Updated: 2021/06/14 15:30:24 by lbertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		= so_long.c \
+			enemy.c \
 			map.c \
 			window.c \
 			hooks/action_hooks.c \
@@ -18,6 +19,7 @@ SRC		= so_long.c \
 			parsing/map_validation.c \
 			parsing/parser.c \
 			parsing/texture_reader.c \
+			render/finish.c \
 			render/render.c \
 			render/color.c \
 			utils/error.c \

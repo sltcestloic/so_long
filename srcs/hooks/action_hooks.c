@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:38:36 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 09:38:38 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 15:24:25 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	handle_movement(t_view *view, int x, int y)
 	view->move_count++;
 	view->player->x = x;
 	view->player->y = y;
-	if (c == 'E' && count_collectibles(view->map) == 0)
-		exit(0);
-	else if (c == 'C')
+	if (c == 'C')
 		view->map->content[y][x] = '0';
 }
 

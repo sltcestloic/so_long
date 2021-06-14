@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:05:30 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:45:20 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 14:37:19 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	read_config(int fd, t_view *view)
 int	parse_config(int fd, t_map *map, t_view *view)
 {
 	view->map = map;
+	view->enemy_count = 0;
 	if (read_config(fd, view) == ERROR)
 		return (ERROR);
 	view->animation = 0;

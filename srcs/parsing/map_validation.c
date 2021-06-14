@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:10:04 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:35:49 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 14:51:20 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,28 @@ void	check_player(int x, int y, t_player *player)
 		print_error_exit("More than one player in map.", 1);
 }
 
+void	add_enemy(t_view *view, int x, int y, char c)
+{
+	t_enemy	enemy;
+
+	enemy.x = x;
+	enemy.y = y;
+	enemy.movx = 0;
+	enemy.movy = 1;
+	if (c == '2')
+	{
+		enemy.movx = 1;
+		enemy.movy = 0;
+	}
+	else
+	{
+		enemy.movy = 1;
+		enemy.movx = 0;
+	}
+	view->enemy[view->enemy_count] = enemy;
+	view->enemy_count++;
+}
+
 int	validate_map_line(char *line, t_view *view)
 {
 	size_t	i;
@@ -58,7 +80,9 @@ int	validate_map_line(char *line, t_view *view)
 	{
 		if (line[i] == 'P')
 			check_player(i, view->map->lines, view->player);
-		if (!is_valid_map_char(line[i]))
+		else if (line[i] == '2' || line[i] == '3')
+			add_enemy(view, i, view->map->lines, line[i]);
+		else if (!is_valid_map_char(line[i]))
 			print_error_exit("Invalid character in map.", 1);
 		i++;
 	}
