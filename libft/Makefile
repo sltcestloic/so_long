@@ -6,7 +6,7 @@
 #    By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 16:40:32 by lbertran          #+#    #+#              #
-#    Updated: 2021/04/27 13:36:16 by lbertran         ###   ########lyon.fr    #
+#    Updated: 2021/06/14 12:41:50 by lbertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRCS		= char/ft_isalnum.c \
 				memory/ft_memcpy.c \
 				memory/ft_memmove.c \
 				memory/ft_memset.c \
-				memory/ft_malloc.c \
 				print/ft_putchar_fd.c \
 				print/ft_putendl_fd.c \
 				print/ft_putnbr_fd.c \
