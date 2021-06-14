@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:21:40 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:29:24 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/14 12:42:30 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdio.h>
 # include <fcntl.h>
 # ifndef ERROR
-#   define ERROR -1
+#  define ERROR -1
 # endif
 # ifndef SUCCESS
-#   define SUCCESS 1
+#  define SUCCESS 1
 # endif
 
 typedef struct s_player
