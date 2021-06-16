@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 13:05:35 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 15:41:03 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/16 14:59:14 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	check_enemies(t_view *view)
 
 	i = -1;
 	if (dead)
+	{
+		printf("%sYou lost: you collided with an enemy patrol !%s\n", HRED, RESET);
 		exit(0);
+	}
 	while (++i < view->enemy_count)
 		if (view->enemy[i].x == view->player->x
 			&& view->enemy[i].y == view->player->y)
