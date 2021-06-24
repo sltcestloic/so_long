@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:09:51 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 11:24:41 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:28:40 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	parse_map_line(char *line, t_view *view)
 
 	if (!validate_map_line(line, view))
 	{
-		print_error("Invalid map line.");
+		print_error_exit("Invalid map line.", 1);
 		return (ERROR);
 	}
 	new_content = malloc(sizeof(char *) * (view->map->lines + 2));

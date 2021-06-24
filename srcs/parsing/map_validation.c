@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:10:04 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 14:51:20 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:34:18 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	add_enemy(t_view *view, int x, int y, char c)
 
 int	validate_map_line(char *line, t_view *view)
 {
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (ft_iswhitespace(line[i]))
