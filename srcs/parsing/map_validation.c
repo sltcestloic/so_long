@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:10:04 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/24 14:34:18 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:40:19 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	validate_map_line(char *line, t_view *view)
 			check_player(i, view->map->lines, view->player);
 		else if (line[i] == '2' || line[i] == '3')
 			add_enemy(view, i, view->map->lines, line[i]);
+		else if (line[i] == 'E')
+			view->has_exit = 1;
 		else if (!is_valid_map_char(line[i]))
 			print_error_exit("Invalid character in map.", 1);
 		i++;

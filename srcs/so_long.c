@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:22:47 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 12:27:53 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:39:33 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int ac, char **av)
 	validate_args(ac, av, &fd);
 	view.mlx = mlx_init();
 	view.move_count = 0;
+	view.has_exit = 0;
 	init_player(&player);
 	view.player = &player;
 	init_map(&map);

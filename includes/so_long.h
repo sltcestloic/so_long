@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:21:40 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/24 14:34:14 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:39:24 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_view
 	int				animation;
 	int				square_height;
 	int				square_width;
+	int				has_exit;
 	t_player		*player;
 	t_map			*map;
 	t_image			*image;

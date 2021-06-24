@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:05:30 by lbertran          #+#    #+#             */
-/*   Updated: 2021/06/14 14:37:19 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/06/24 14:40:45 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ int	parse_config(int fd, t_map *map, t_view *view)
 	view->square_height = view->height / map->lines;
 	view->square_width = view->width / map->longest;
 	parse_textures(view);
+	if (!view->has_exit)
+		print_error_exit("No exit in map.", 1);
 	return (SUCCESS);
 }
